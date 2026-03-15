@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --income: #16a34a;
+  --expense: #dc2626;
+  --balance: #0ea5e9;
+  --background: #f8fafc;
+  --foreground: #0f172a;
+}
+
+.dark {
+  --background: #0f172a;
+  --foreground: #f8fafc;
+}
+
+body {
+  @apply bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-50 antialiased;
+}
+
+.amount-income {
+  @apply text-green-600 dark:text-green-400 font-semibold;
+}
+
+.amount-expense {
+  @apply text-red-600 dark:text-red-400 font-semibold;
+}
+
+.btn-primary {
+  @apply px-4 py-3 rounded-xl font-semibold bg-slate-800 text-white dark:bg-slate-100 dark:text-slate-900 hover:opacity-90 transition active:scale-[0.98];
+}
+
+.btn-secondary {
+  @apply px-4 py-3 rounded-xl font-semibold border-2 border-slate-300 dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition;
+}
+
+.input-field {
+  @apply w-full px-4 py-3 rounded-xl border-2 border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 focus:ring-2 focus:ring-sky-500 focus:border-transparent outline-none transition;
+}
+
+.card {
+  @apply rounded-2xl bg-white dark:bg-slate-800 shadow-lg border border-slate-100 dark:border-slate-700 p-5;
+}

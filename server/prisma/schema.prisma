@@ -1,0 +1,61 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String
+  email         String    @unique
+  passwordHash  String    @map("password_hash")
+  currency      String    @default("INR")
+  theme         String    @default("light")
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+  transactions  Transaction[]
+  budgets       Budget[]
+  categories    Category[]
+}
+
+model Category {
+  id          String   @id @default(cuid())
+  name        String
+  type        String   // "income" | "expense"
+  icon        String?  @default("💰")
+  userId      String?  @map("user_id")
+  user        User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  transactions Transaction[]
+  budgets     Budget[]
+}
+
+model Transaction {
+  id          String   @id @default(cuid())
+  amount      Decimal  @db.Decimal(12, 2)
+  type        String   // "income" | "expense"
+  categoryId  String   @map("category_id")
+  category    Category @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  date        DateTime
+  note        String?
+  paymentMethod String? @map("payment_method") @default("Other")
+  userId      String   @map("user_id")
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now()) @map("created_at")
+}
+
+model Budget {
+  id          String   @id @default(cuid())
+  categoryId  String   @map("category_id")
+  category    Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  amount      Decimal  @db.Decimal(12, 2)
+  month       Int
+  year        Int
+  userId      String   @map("user_id")
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  @@unique([userId, categoryId, month, year])
+}
