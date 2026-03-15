@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { transactions, categories, folders } from '@/lib/api';
 import type { Category, Folder } from '@/lib/api';
@@ -20,7 +20,7 @@ function isValidDateParam(s: string | null): boolean {
   return date.getFullYear() === y && date.getMonth() === m - 1 && date.getDate() === d;
 }
 
-export default function AddTransactionPage() {
+function AddTransactionContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [type, setType] = useState<'income' | 'expense'>('expense');
@@ -163,5 +163,17 @@ export default function AddTransactionPage() {
         </div>
       </form>
     </div>
+  );
+}
+
+export default function AddTransactionPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex items-center justify-center py-20">
+        <div className="animate-pulse text-slate-500">Loading...</div>
+      </div>
+    }>
+      <AddTransactionContent />
+    </Suspense>
   );
 }

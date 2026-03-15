@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { Plus, Trash2 } from 'lucide-react';
@@ -23,7 +23,7 @@ function nextDay(dateStr: string): string {
   return d.toISOString().slice(0, 10);
 }
 
-export default function DashboardPage() {
+function DashboardContent() {
   const { user } = useAuth();
   const searchParams = useSearchParams();
   const [summary, setSummary] = useState<{ totalIncome: number; totalExpense: number; balance: number } | null>(null);
@@ -243,5 +243,17 @@ export default function DashboardPage() {
         </>
       )}
     </div>
+  );
+}
+
+export default function DashboardPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex items-center justify-center py-20">
+        <div className="animate-pulse text-slate-500">Loading...</div>
+      </div>
+    }>
+      <DashboardContent />
+    </Suspense>
   );
 }
