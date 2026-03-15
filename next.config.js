@@ -9,6 +9,7 @@ const nextConfig = {
       { source: '/api/budget/:path*', destination: 'http://localhost:4000/api/budget/:path*' },
       { source: '/api/reports/:path*', destination: 'http://localhost:4000/api/reports/:path*' },
       { source: '/api/users/:path*', destination: 'http://localhost:4000/api/users/:path*' },
+      { source: '/api/folders/:path*', destination: 'http://localhost:4000/api/folders/:path*' },
     ];
   },
 };
