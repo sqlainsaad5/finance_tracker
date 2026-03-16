@@ -1,9 +1,17 @@
+# Dependencies and build
 node_modules
+**/node_modules
 .next
+**/.next
+dist
+**/dist
+
+# Env and local
 .env
 .env.local
 .env*.local
-dist
-server/dist
+**/.env.local
+
+# Misc
 *.log
 .DS_Store

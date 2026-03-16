@@ -2,7 +2,7 @@
 
 ## Before first deploy: create initial migration
 
-From this folder (`server/`), with `DATABASE_URL` in `.env` pointing at a Postgres DB, run once:
+From this folder (`backend/`), with `DATABASE_URL` in `.env` pointing at a Postgres DB, run once:
 
 ```bash
 npx prisma migrate dev --name init
@@ -21,4 +21,4 @@ Commit the new `prisma/migrations` folder so the host can run `prisma migrate de
 - **Build:** `npm install && npm run build` (build runs `prisma generate && tsc`)
 - **Start:** `npx prisma migrate deploy && npm start`
 
-Then set `NEXT_PUBLIC_API_URL` on Vercel to this service URL (no trailing slash) and redeploy the frontend.
+Then set `NEXT_PUBLIC_API_URL` on Vercel (in the frontend project) to this service URL (no trailing slash) and redeploy the frontend.

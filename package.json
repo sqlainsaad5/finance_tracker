@@ -1,33 +1,16 @@
 {
-  "name": "personal-finance-tracker",
+  "name": "finance-tracker",
   "version": "1.0.0",
   "private": true,
+  "description": "Personal finance tracker – frontend (Next.js) and backend (Express)",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "server": "cd server && npm run dev",
-    "server:build": "cd server && npm run build"
-  },
-  "dependencies": {
-    "next": "14.2.18",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "lucide-react": "^0.460.0",
-    "recharts": "^2.13.3",
-    "date-fns": "^4.1.0",
-    "clsx": "^2.1.1"
-  },
-  "devDependencies": {
-    "@types/node": "^22.9.0",
-    "@types/react": "^18.3.12",
-    "@types/react-dom": "^18.3.1",
-    "autoprefixer": "^10.4.20",
-    "eslint": "^8.57.0",
-    "eslint-config-next": "14.2.18",
-    "postcss": "^8.4.49",
-    "tailwindcss": "^3.4.15",
-    "typescript": "^5.6.3"
+    "dev": "npm run dev:frontend",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && npm run dev",
+    "build": "npm run build:frontend",
+    "build:frontend": "cd frontend && npm run build",
+    "build:backend": "cd backend && npm run build",
+    "start:frontend": "cd frontend && npm start",
+    "start:backend": "cd backend && npm start"
   }
 }
