@@ -1,4 +1,13 @@
-const API = process.env.NEXT_PUBLIC_API_URL || '';
+const PRODUCTION_BACKEND = 'https://finance-tracker-jet-nu.vercel.app';
+const API_BUILD = (typeof process !== 'undefined' && process.env.NEXT_PUBLIC_API_URL) ? process.env.NEXT_PUBLIC_API_URL.replace(/\/$/, '') : '';
+
+function getApiBase(): string {
+  if (API_BUILD) return API_BUILD;
+  if (typeof window !== 'undefined' && window.location.origin === 'https://finance-tracker-adkb.vercel.app') {
+    return PRODUCTION_BACKEND;
+  }
+  return '';
+}
 
 function getToken(): string | null {
   if (typeof window === 'undefined') return null;
@@ -11,12 +20,13 @@ export async function api<T>(
 ): Promise<T> {
   const { token: optToken, ...rest } = options;
   const token = optToken ?? getToken();
+  const base = getApiBase();
   const headers: HeadersInit = {
     'Content-Type': 'application/json',
     ...(rest.headers as Record<string, string>),
   };
   if (token) (headers as Record<string, string>)['Authorization'] = `Bearer ${token}`;
-  const res = await fetch(`${API}${path}`, { ...rest, headers });
+  const res = await fetch(`${base}${path}`, { ...rest, headers });
   const data = await res.json().catch(() => ({}));
   if (!res.ok) throw new Error(data.error || res.statusText || 'Request failed');
   return data as T;

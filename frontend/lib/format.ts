@@ -1,8 +1,9 @@
-const symbols: Record<string, string> = { INR: '₹', USD: '$', EUR: '€' };
+const symbols: Record<string, string> = { PKR: 'Rs.', INR: '₹', USD: '$', EUR: '€' };
 
-export function formatCurrency(amount: number, currency = 'INR'): string {
+export function formatCurrency(amount: number, currency = 'PKR'): string {
   const sym = symbols[currency] || currency;
-  return `${sym}${Math.abs(amount).toLocaleString('en-IN', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
+  const locale = currency === 'PKR' ? 'en-PK' : 'en-IN';
+  return `${sym}${Math.abs(amount).toLocaleString(locale, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
 }
 
 export function formatDate(d: string | Date): string {

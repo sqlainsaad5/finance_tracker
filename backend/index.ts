@@ -13,7 +13,12 @@ import { seedDefaultCategories } from './lib/seedCategories.js';
 const app = express();
 const PORT = process.env.PORT || 4000;
 
-app.use(cors({ origin: process.env.FRONTEND_URL || 'http://localhost:3000', credentials: true }));
+const allowedOrigins = process.env.FRONTEND_URL
+  ? process.env.FRONTEND_URL.split(',').map((o) => o.trim()).filter(Boolean)
+  : [];
+const defaultOrigins = ['http://localhost:3000', 'https://finance-tracker-adkb.vercel.app'];
+const corsOrigin = allowedOrigins.length > 0 ? allowedOrigins : defaultOrigins;
+app.use(cors({ origin: corsOrigin, credentials: true }));
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);

@@ -33,7 +33,7 @@ function groupByDate(list: Transaction[]) {
 
 export default function TransactionsPage() {
   const { user } = useAuth();
-  const currency = user?.currency || 'INR';
+  const currency = user?.currency || 'PKR';
   const [list, setList] = useState<Transaction[]>([]);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);

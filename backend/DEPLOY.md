@@ -13,7 +13,7 @@ Commit the new `prisma/migrations` folder so the host can run `prisma migrate de
 ## Env vars on the host
 
 - `DATABASE_URL` – Postgres connection string (Neon, Supabase, etc.)
-- `FRONTEND_URL` – Your Vercel app URL (e.g. `https://your-app.vercel.app`) for CORS
+- `FRONTEND_URL` – Allowed origin(s) for CORS: a single URL (e.g. `https://your-app.vercel.app`) or comma-separated (e.g. `http://localhost:3000,https://your-app.vercel.app`) for both dev and prod.
 - `JWT_SECRET` – Long random string (e.g. `openssl rand -base64 32`)
 
 ## Build and start

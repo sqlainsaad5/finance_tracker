@@ -12,7 +12,7 @@ model User {
   name          String
   email         String    @unique
   passwordHash  String    @map("password_hash")
-  currency      String    @default("INR")
+  currency      String    @default("PKR")
   theme         String    @default("light")
   createdAt     DateTime  @default(now()) @map("created_at")
   updatedAt     DateTime  @updatedAt @map("updated_at")

@@ -14,7 +14,7 @@ export default function TransactionDetailPage() {
   const params = useParams();
   const id = params?.id as string;
   const { user } = useAuth();
-  const currency = user?.currency || 'INR';
+  const currency = user?.currency || 'PKR';
   const [tx, setTx] = useState<Transaction | null>(null);
   const [loading, setLoading] = useState(true);
   const [deleting, setDeleting] = useState(false);

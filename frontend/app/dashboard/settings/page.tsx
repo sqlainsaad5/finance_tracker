@@ -11,7 +11,7 @@ export default function SettingsPage() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [currency, setCurrency] = useState('INR');
+  const [currency, setCurrency] = useState('PKR');
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState('');
   const [deleteConfirm, setDeleteConfirm] = useState('');
@@ -20,7 +20,7 @@ export default function SettingsPage() {
     if (user) {
       setName(user.name);
       setEmail(user.email);
-      setCurrency(user.currency || 'INR');
+      setCurrency(user.currency || 'PKR');
       if (user.theme) setTheme(user.theme as 'light' | 'dark');
     }
   }, [user, setTheme]);
@@ -85,6 +85,7 @@ export default function SettingsPage() {
       <section className="card">
         <h2 className="text-lg font-semibold mb-4">Currency</h2>
         <select value={currency} onChange={(e) => setCurrency(e.target.value)} className="input-field w-full">
+          <option value="PKR">Pakistani Rupee (Rs.)</option>
           <option value="INR">Indian Rupee (₹)</option>
           <option value="USD">US Dollar ($)</option>
           <option value="EUR">Euro (€)</option>

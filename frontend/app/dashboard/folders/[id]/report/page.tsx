@@ -30,7 +30,7 @@ export default function FolderReportPage() {
   const params = useParams();
   const id = params?.id as string;
   const { user } = useAuth();
-  const currency = user?.currency || 'INR';
+  const currency = user?.currency || 'PKR';
   const [folder, setFolder] = useState<Folder | null>(null);
   const [list, setList] = useState<Transaction[]>([]);
   const [summary, setSummary] = useState<{ totalIncome: number; totalExpense: number; balance: number } | null>(null);

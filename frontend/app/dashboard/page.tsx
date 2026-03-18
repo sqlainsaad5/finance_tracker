@@ -34,7 +34,7 @@ function DashboardContent() {
   const [datesLoading, setDatesLoading] = useState(true);
   const [deletingId, setDeletingId] = useState<string | null>(null);
 
-  const currency = user?.currency || 'INR';
+  const currency = user?.currency || 'PKR';
 
   useEffect(() => {
     const dateParam = searchParams.get('date');

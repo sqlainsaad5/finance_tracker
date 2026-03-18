@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS users (
   name          TEXT NOT NULL,
   email         TEXT NOT NULL UNIQUE,
   password_hash TEXT NOT NULL,
-  currency      TEXT NOT NULL DEFAULT 'INR',
+  currency      TEXT NOT NULL DEFAULT 'PKR',
   theme         TEXT NOT NULL DEFAULT 'light',
   created_at    TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   updated_at    TIMESTAMPTZ NOT NULL DEFAULT NOW()

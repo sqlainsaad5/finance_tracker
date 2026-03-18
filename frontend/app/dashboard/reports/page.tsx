@@ -11,7 +11,7 @@ const CHART_COLORS = ['#16a34a','#dc2626','#0ea5e9','#f59e0b','#8b5cf6','#ec4899
 
 export default function ReportsPage() {
   const { user } = useAuth();
-  const currency = user?.currency || 'INR';
+  const currency = user?.currency || 'PKR';
   const [year, setYear] = useState(new Date().getFullYear());
   const [month, setMonth] = useState(new Date().getMonth() + 1);
   const [data, setData] = useState<{
@@ -123,7 +123,7 @@ export default function ReportsPage() {
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={data.expenseByCategory} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
                 <XAxis dataKey="categoryName" tick={{ fontSize: 12 }} />
-                <YAxis tickFormatter={(v) => `${currency === 'INR' ? '₹' : currency === 'USD' ? '$' : '€'}${v / 1000}k`} />
+                <YAxis tickFormatter={(v) => `${currency === 'PKR' ? 'Rs.' : currency === 'INR' ? '₹' : currency === 'USD' ? '$' : '€'}${v / 1000}k`} />
                 <Tooltip formatter={(v: number) => formatCurrency(v, currency)} />
                 <Bar dataKey="amount" fill="#0ea5e9" radius={[4, 4, 0, 0]} />
               </BarChart>

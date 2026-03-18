@@ -41,6 +41,8 @@ finance-tracker/
 
 ## Setup
 
+**Environment:** One env file per app. **Frontend:** create `frontend/.env` or `frontend/.env.local` with `NEXT_PUBLIC_API_URL=http://localhost:4000` (see Frontend step). **Backend:** copy `backend/.env.example` to `backend/.env`.
+
 ### 1. Database
 
 Create a PostgreSQL database (local or e.g. Neon). Note the connection URL.
@@ -64,8 +66,7 @@ API runs at `http://localhost:4000`.
 ```bash
 cd frontend
 npm install
-cp .env.example .env.local
-# .env.local: NEXT_PUBLIC_API_URL=http://localhost:4000
+# Create .env or .env.local with: NEXT_PUBLIC_API_URL=http://localhost:4000
 npm run dev
 ```
 
@@ -91,8 +92,10 @@ npm run dev:backend    # in another terminal
 
 ## Production
 
-- **Vercel**: Set Root Directory to `frontend`. Add env var `NEXT_PUBLIC_API_URL` = your backend URL (no trailing slash).
-- **Backend** (Railway/Render): Set Root Directory to `backend`. Set `DATABASE_URL`, `FRONTEND_URL` (Vercel URL), `JWT_SECRET`. See `backend/DEPLOY.md`.
+- **Vercel (frontend)**: Set Root Directory to `frontend`. Add `NEXT_PUBLIC_API_URL` = your backend URL (no trailing slash). Optional: `BACKEND_URL` for Next.js rewrites when proxying `/api` to the backend.
+- **Backend** (Vercel/Railway/Render): Set Root Directory to `backend`. Set `DATABASE_URL`, `JWT_SECRET`, and `FRONTEND_URL` = your frontend URL (e.g. `https://your-app.vercel.app`) or comma-separated for multiple origins. See `backend/DEPLOY.md`.
+
+**This project’s Vercel deployment:** Frontend [finance-tracker-adkb.vercel.app](https://finance-tracker-adkb.vercel.app), Backend [finance-tracker-jet-nu.vercel.app](https://finance-tracker-jet-nu.vercel.app). The app is wired to use these by default; optional env overrides: frontend `NEXT_PUBLIC_API_URL=https://finance-tracker-jet-nu.vercel.app`, backend `FRONTEND_URL=https://finance-tracker-adkb.vercel.app`.
 
 ## Default categories
 

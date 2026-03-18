@@ -45,7 +45,7 @@ router.patch('/profile', async (req, res) => {
     updates.push(`password_hash = $${idx++}`);
     params.push(passwordHash);
   }
-  if (['INR', 'USD', 'EUR'].includes(currency)) {
+  if (['PKR', 'INR', 'USD', 'EUR'].includes(currency)) {
     updates.push(`currency = $${idx++}`);
     params.push(currency);
   }

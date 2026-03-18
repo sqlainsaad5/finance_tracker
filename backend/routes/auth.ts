@@ -21,9 +21,9 @@ router.post('/signup', async (req, res) => {
     const id = randomUUID();
     await query(
       'INSERT INTO users (id, name, email, password_hash, currency, theme) VALUES ($1, $2, $3, $4, $5, $6)',
-      [id, name.trim(), emailNorm, passwordHash, 'INR', 'light']
+      [id, name.trim(), emailNorm, passwordHash, 'PKR', 'light']
     );
-    const user = { id, name: name.trim(), email: emailNorm, currency: 'INR', theme: 'light' };
+    const user = { id, name: name.trim(), email: emailNorm, currency: 'PKR', theme: 'light' };
     const token = signToken({ userId: user.id, email: user.email });
     return res.status(201).json({ user, token });
   } catch (e) {
